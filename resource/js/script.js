@@ -23,6 +23,7 @@ const lose = new Audio("resource/audios/lose.mp3");
 let counter = 7;
 let scoreCounter = 0;
 let secretWordPoint = 0;
+let firstWin = 0;
 
 const secretWords = [
   "odin",
@@ -135,6 +136,7 @@ const winScreen = () => {
   resultScreen.children[0].children[0].alt = "hangmanWin";
   resultScreen.children[1].children[0].textContent = "WIN !!!";
   resultScreen.children[1].children[1].children[0].textContent = secretWord;
+  firstWin++;
   playWinkAudio();
 };
 
@@ -155,6 +157,18 @@ const checkWinMoment = () => {
     .split("")
     .filter((x) => x != " ")
     .join("") == secretWord && winScreen();
+};
+
+// ------------------------------------------------------------------------ tapped buttons
+
+const tappedButtons = (situation, button) => {
+  if (situation) {
+    button.classList.add("correctTapped");
+    button.setAttribute("disabled", "");
+  } else {
+    button.classList.add("inCorrectTapped");
+    button.setAttribute("disabled", "");
+  }
 };
 
 // ------------------------------------------------------------------------ updating hangman's situation
@@ -206,37 +220,40 @@ Array.from(keyboard.children).forEach((x) => {
       checkWinMoment();
       playCorrectAudio();
       updateScoreCount(1);
+      tappedButtons(1, x);
     } else {
-      counter--;
       updateScoreCount(0);
-      hangmanUpdate(counter);
+      hangmanUpdate(--counter);
       playIncorrectAudio();
+      tappedButtons(0, x);
     }
-    x.setAttribute("disabled", "");
-    x.classList.add("tapped");
   });
 });
 
 // ------------------------------------------------------------------------ click playAgain button
 
 playAgain.addEventListener("click", (e) => {
+  if (playAgain.textContent == "Play Again") {
+    if (+highScoreCount.textContent < scoreCounter && firstWin) {
+      highScoreCount.textContent = scoreCounter;
+      firstWin = 0;
+    }
+    scoreCounter = 0;
+    scoreCount.textContent = scoreCounter;
+  }
+
   playClickAudio();
   generateRandomQuestion();
   resultScreen.style.visibility = "hidden";
   Array.from(keyboard.children).forEach((x) => {
     x.removeAttribute("disabled");
-    x.classList.remove("tapped");
+    x.classList.remove("inCorrectTapped");
+    x.classList.remove("correctTapped");
   });
   stopAudio(win);
   stopAudio(lose);
   counter = 7;
   Array.from(hangman.children).forEach((x) => (x.style.visibility = "hidden"));
-  if (playAgain.textContent == "Play Again") {
-    +highScoreCount.textContent < scoreCounter &&
-      (highScoreCount.textContent = scoreCounter);
-    scoreCounter = 0;
-    scoreCount.textContent = scoreCounter;
-  }
 });
 
 // ------------------------------------------------------------------------ click menu button
