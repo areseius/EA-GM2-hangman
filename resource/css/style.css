@@ -1,0 +1,327 @@
+body {
+  background-color: #000000;
+  background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23343434' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+/* !GAME SCREEN */
+
+.gameScreen {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 50px;
+}
+
+/* !HANGMAN AREA */
+
+.hangmanArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hangman {
+  height: 700px;
+  width: 600px;
+  border-top: 7px solid white;
+  border-left: 7px solid white;
+  border-bottom: 7px solid white;
+  position: relative;
+}
+.hangman span {
+  display: inline-block;
+  position: absolute;
+}
+
+.rope {
+  height: 100px;
+  width: 7px;
+  background-color: white;
+  top: 0;
+  left: 50%;
+  visibility: hidden;
+}
+.head {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: white;
+  top: 100px;
+  left: 42%;
+  visibility: hidden;
+}
+
+.body {
+  height: 200px;
+  width: 7px;
+  background-color: white;
+  top: 29%;
+  left: 50%;
+  border-radius: 20px;
+  visibility: hidden;
+}
+
+.leftArm {
+  height: 100px;
+  width: 7px;
+  background-color: white;
+  top: 32%;
+  left: 46%;
+  transform: rotate(30deg);
+  border-radius: 20px;
+  visibility: hidden;
+}
+
+.rightArm {
+  height: 100px;
+  width: 7px;
+  background-color: white;
+  top: 32%;
+  left: 54%;
+  transform: rotate(-30deg);
+  border-radius: 20px;
+  visibility: hidden;
+}
+
+.leftLeg {
+  height: 120px;
+  width: 7px;
+  background-color: white;
+  top: 56%;
+  left: 45.2%;
+  transform: rotate(30deg);
+  border-radius: 20px;
+  visibility: hidden;
+}
+
+.rightLeg {
+  height: 120px;
+  width: 7px;
+  background-color: white;
+  top: 56%;
+  left: 54.8%;
+  transform: rotate(-30deg);
+  border-radius: 20px;
+  visibility: hidden;
+}
+
+/* !USER AREA */
+
+.userArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.userArea .keyboard {
+  width: 90%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 10px;
+}
+.userArea .pattern {
+  font-size: 100px;
+  font-weight: 100;
+  user-select: none;
+}
+.userArea .hint {
+  margin-block: 70px;
+  font-size: 30px;
+  font-style: italic;
+  font-weight: 200;
+  user-select: none;
+}
+.keyboard button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 80px;
+  background-color: transparent;
+  border: 1px solid white;
+  outline: none;
+  cursor: pointer;
+  font-size: 35px;
+  font-weight: bold;
+  user-select: none;
+  border-radius: 15px;
+}
+
+.tapped {
+  transform: scale(0.8);
+  color: gray;
+}
+
+.keyboard button:not(:disabled):hover {
+  background-color: rgba(255, 255, 255, 0.288);
+}
+
+.scoreTable {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 30px;
+  right: 100px;
+  gap: 12px;
+  user-select: none;
+}
+.scoreTable .score {
+  display: flex;
+  gap: 10px;
+}
+.scoreTable .highScore {
+  display: flex;
+  gap: 10px;
+}
+.scoreTable .fa-trophy {
+  font-size: 45px;
+  color: #fed346;
+}
+.scoreTable .fa-award {
+  font-size: 45px;
+  color: purple;
+}
+.scoreTable p {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+/* !RESULT SCREEN */
+
+.resultScreen {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: absolute;
+  z-index: 999;
+  visibility: hidden;
+  align-items: center;
+  justify-items: center;
+  background-color: #000000;
+  background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23343434' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.resultScreen .playAgain {
+  font-size: 30px;
+  cursor: pointer;
+  border: 2px solid white;
+  background-color: transparent;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  user-select: none;
+}
+
+.resultScreen figure {
+  height: 700px;
+  width: auto;
+}
+
+.resultScreen figure img {
+  height: 100%;
+  width: 100%;
+}
+
+.resultScreen .resultScreenMenu {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.resultScreen .resultScreenMenu h1 {
+  font-size: 200px;
+}
+.resultScreen .resultScreenMenu p {
+  user-select: none;
+  margin-block: 40px;
+  font-size: 25px;
+  font-weight: 100;
+}
+
+.resultScreen .resultScreenMenu p span {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* !MENU */
+
+.menu {
+  background-color: #000000;
+  background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23343434' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  z-index: 998;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.menu h1 {
+  font-size: 100px;
+  letter-spacing: 10px;
+  font-style: italic;
+  user-select: none;
+}
+
+.menu h2 {
+  font-size: 15px;
+  letter-spacing: 3px;
+  font-weight: 100;
+  font-style: italic;
+  user-select: none;
+}
+
+.menu h2::before {
+  content: '" ';
+}
+
+.menu h2::after {
+  content: ' "';
+}
+
+.menu .menuPlayButton {
+  margin-top: 50px;
+  display: inline-block;
+  font-size: 30px;
+  height: 80px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.menu p {
+  position: absolute;
+  bottom: 5px;
+  font-weight: 100;
+  font-style: italic;
+  font-size: 15px;
+  user-select: none;
+}
+
+.menu figure {
+  position: absolute;
+  height: 300px;
+  width: auto;
+  top: -20px;
+  right: 15%;
+}
+
+.menu figure img {
+  width: auto;
+  height: auto;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hangman</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://www.icons101.com/icon_ico/id_75809/HangmanGamegrey.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="resource/css/reset.css" />
+    <link rel="stylesheet" href="resource/css/style.css" />
+  </head>
+  <body>
+    <section class="menu">
+      <h1>HANGMAN.</h1>
+      <h2>A man will die, but not his ideas.</h2>
+      <i class="fa-solid fa-play menuPlayButton"></i>
+      <p>Powered by ares.</p>
+      <figure>
+        <img src="resource/images/rope.png" alt="" />
+      </figure>
+    </section>
+    <section class="resultScreen">
+      <figure>
+        <img src="" alt="" />
+      </figure>
+      <article class="resultScreenMenu">
+        <h1></h1>
+        <p>Secret word : <span></span></p>
+        <button class="playAgain"></button>
+      </article>
+    </section>
+    <section class="gameScreen">
+      <article class="hangmanArea">
+        <div class="hangman">
+          <span class="rope"></span>
+          <span class="head"></span>
+          <span class="body"></span>
+          <span class="leftArm"></span>
+          <span class="rightArm"></span>
+          <span class="leftLeg"></span>
+          <span class="rightLeg"></span>
+        </div>
+      </article>
+      <article class="userArea">
+        <div class="scoreTable">
+          <div class="score">
+            <p>Score :</p>
+            <i class="fa-solid fa-trophy"></i>
+            <p class="scoreCount">0</p>
+          </div>
+
+          <div class="highScore">
+            <p>High Score :</p>
+            <i class="fa-solid fa-award"></i>
+            <p class="highScoreCount">0</p>
+          </div>
+        </div>
+
+        <p class="pattern"></p>
+        <p class="hint"></p>
+        <div class="keyboard"></div>
+      </article>
+    </section>
+    <script src="resource/js/script.js"></script>
+  </body>
+</html>
