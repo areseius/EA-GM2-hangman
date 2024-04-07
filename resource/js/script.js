@@ -28,30 +28,67 @@ let firstWin = 0;
 const secretWords = [
   "odin",
   "thor",
+  "loki",
   "snake",
   "dog",
+  "butterfly",
   "barcelona",
   "real-madrid",
+  "sevilla",
   "banana",
   "kiwi",
+  "pomegranate",
   "socrates",
   "platon",
+  "aristotle",
   "javascript",
   "java",
+  "python",
+  "red",
+  "black",
+  "purple",
+  "apple",
+  "samsung",
+  "xiaomi",
+  "france",
+  "spain",
+  "italy",
+  "instagram",
+  "twitter",
+  "facebook",
 ];
+
 const hints = [
   "a viking god.",
   "a viking god.",
+  "a viking god.",
+  "an animal.",
   "an animal.",
   "an animal.",
   "a spain football club.",
   "a spain football club.",
+  "a spain football club.",
+  "a fruit.",
   "a fruit.",
   "a fruit.",
   "a philosopher.",
   "a philosopher.",
+  "a philosopher.",
   "a programming language.",
   "a programming language.",
+  "a programming language.",
+  "a color.",
+  "a color.",
+  "a color.",
+  "a smartphone brand.",
+  "a smartphone brand.",
+  "a smartphone brand.",
+  "a country in europe.",
+  "a country in europe.",
+  "a country in europe.",
+  "a social media app.",
+  "a social media app.",
+  "a social media app.",
 ];
 
 // ------------------------------------------------------------------------ creating buttons
@@ -205,11 +242,12 @@ const hangmanUpdate = (counter) => {
 // ------------------------------------------------------------------------ click buttons
 
 Array.from(keyboard.children).forEach((x) => {
-  x.addEventListener("click", (e) => {
-    let currentPattern = patternArea.textContent
-      .split("")
-      .filter((z) => z != " ");
+  x.addEventListener("click", () => {
     if (secretWord.includes(x.textContent.toLowerCase())) {
+      const currentPattern = patternArea.textContent
+        .split("")
+        .filter((z) => z != " ");
+
       secretWord.split("").forEach((y, i) => {
         if (y == x.textContent.toLowerCase()) {
           currentPattern[i] = y;
@@ -217,6 +255,7 @@ Array.from(keyboard.children).forEach((x) => {
       });
 
       patternArea.textContent = currentPattern.join(" ");
+
       checkWinMoment();
       playCorrectAudio();
       updateScoreCount(1);
@@ -232,7 +271,7 @@ Array.from(keyboard.children).forEach((x) => {
 
 // ------------------------------------------------------------------------ click playAgain button
 
-playAgain.addEventListener("click", (e) => {
+playAgain.addEventListener("click", () => {
   if (playAgain.textContent == "Play Again") {
     if (+highScoreCount.textContent < scoreCounter && firstWin) {
       highScoreCount.textContent = scoreCounter;
@@ -258,7 +297,7 @@ playAgain.addEventListener("click", (e) => {
 
 // ------------------------------------------------------------------------ click menu button
 
-menu.children[2].addEventListener("click", (e) => {
+menu.children[2].addEventListener("click", () => {
   playClickAudio();
   menu.style.visibility = "hidden";
 });
